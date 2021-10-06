@@ -62,16 +62,19 @@
                 </ul>
             </nav>
         </div>
-        <h1 class="text-center" style="color: darkred; font-weight: bold;">Страница приветствия</h1>
+        <h1 class="text-center" style="color: darkred; font-weight: bold;">Новости</h1>
         <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
             <div class="grid grid-cols-1">
-                <div class="content">
-                    <p class="flex justify-center text-center text-lg mx-auto grid-cols-1 p-6">
-                        Приветствую тебя, юный падаван !!!<br>
-                        На этом курсе будем учиться фреймворку Laravel,
-                        это первое ДЗ по данному курсу.<br>
-                        Со стилями не заморачивался, т.к. считаю на данном этапе это лишнее.
-                    </p>
+                <div class="content" style="max-width: 900px;">
+                    <div class="flex justify-center" style="flex-wrap: wrap">
+                        @for($i = 1; $i <= 10; $i++)
+                            <div class="p-6">
+                                <h3>
+                                    <a style="color: darkred;" href="{{ url('news', ['id' => $i]) }}"> Новость № {{ $i }}</a>
+                                </h3>
+                            </div>
+                        @endfor
+                    </div>
                 </div>
             </div>
         </div>

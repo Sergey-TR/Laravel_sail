@@ -62,15 +62,30 @@
                 </ul>
             </nav>
         </div>
-        <h1 class="text-center" style="color: darkred; font-weight: bold;">Страница приветствия</h1>
+        <h1 class="text-center" style="color: darkred; font-weight: bold;">Новость № {{ $id }}</h1>
         <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
             <div class="grid grid-cols-1">
-                <div class="content">
-                    <p class="flex justify-center text-center text-lg mx-auto grid-cols-1 p-6">
-                        Приветствую тебя, юный падаван !!!<br>
-                        На этом курсе будем учиться фреймворку Laravel,
-                        это первое ДЗ по данному курсу.<br>
-                        Со стилями не заморачивался, т.к. считаю на данном этапе это лишнее.
+                <div class="content p-6" style="max-width: 900px;">
+                    <p style="color: darkred;">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet,
+                        at beatae blanditiis ea eaque eligendi expedita explicabo hic in ipsum itaque
+                        labore laboriosam magnam maiores modi molestias natus nesciunt non numquam
+                        pariatur quidem quis quod repudiandae rerum saepe suscipit tenetur ut veritatis
+                        voluptatem! Animi blanditiis eveniet in magnam minima repellendus sequi unde.
+                        Ab commodi distinctio earum laborum molestias nam nesciunt odio officiis placeat
+                        possimus quas quisquam, recusandae sint. Adipisci dolores impedit iure natus
+                        nemo quas quisquam, sit voluptatibus? Ab amet consequatur cumque cupiditate
+                        deleniti distinctio dolorem eaque, eos error est, et eum, exercitationem illum
+                        itaque iure laborum magnam magni molestiae natus necessitatibus nobis obcaecati
+                        perspiciatis provident quae quis quo ratione sequi tenetur totam veritatis.
+                        Aperiam consequuntur corporis deserunt doloremque libero, omnis possimus praesentium,
+                        quae quam qui quod, tempore voluptates voluptatibus! Assumenda consequatur dolorum
+                        excepturi, optio provident sed sunt! Accusamus accusantium aperiam asperiores corporis
+                        delectus dignissimos dolor dolorem ea eius enim et expedita hic, ipsam itaque iusto
+                        laborum maiores neque nesciunt officia officiis pariatur praesentium quaerat quam
+                        recusandae rem sapiente sit voluptas! Beatae corporis culpa optio quisquam quos reiciendis,
+                        sint soluta? Amet aut earum nemo. A aliquid asperiores deserunt dignissimos doloremque,
+                        eius et obcaecati odit optio possimus quas repellat sequi!
                     </p>
                 </div>
             </div>
