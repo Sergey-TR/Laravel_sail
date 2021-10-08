@@ -7,13 +7,14 @@
     <form action="#" style="display: grid; grid-template-columns: repeat(2, 1fr); justify-content: center;">
         <div style="display: flex; flex-direction: column; align-items: center;">
             <label style="color: coral; font-weight: bold; font-size: 20px;
-                            margin-bottom: 10px;" for="category">Select news category</label>
+                            margin-bottom: 10px; position: relative;"
+                   for="category">Select news category</label>
             <select name="category" style="width: 300px; height: 40px; color: coral; padding: 10px;">
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->title }}</option>
                 @endforeach
             </select>
-            <button style="width: 150px; background-color: coral; color: white; height: 40px;
+            <button style=" display: block; width: 150px; background-color: coral; color: white; height: 40px;
                     font-weight: bold; cursor: pointer;"
                     type="submit">ADD NEWS</button>
         </div>
