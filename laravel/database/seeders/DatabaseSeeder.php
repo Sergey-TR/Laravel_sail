@@ -2,9 +2,14 @@
 
 namespace Database\Seeders;
 
+use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\News;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Psy\Util\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,9 +20,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
         Category::factory(8)
             ->has(News::factory(8))
             ->create();
+
     }
 }

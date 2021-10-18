@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\News;
@@ -14,16 +15,16 @@ class NewsController extends Controller
         return view('news.index', compact('news'));
     }
 
-    public function show(News $news)
+    public function show(News $news, User $user)
     {
         $category = $news->category()->get()[0];
         return view('news.show', compact(['news','category']));
     }
 
-    public function create()
-    {
-        $categories = Category::all();
-        return view('news.create', compact('categories'));
-    }
+//    public function create()
+//    {
+//        $categories = Category::all();
+//        return view('news.create', compact('categories'));
+//    }
 
 }

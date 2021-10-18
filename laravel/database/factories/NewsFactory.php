@@ -23,7 +23,9 @@ class NewsFactory extends Factory
     {
         return [
             'title' => $this->faker->text(30),
-            'description' => $this->faker->text(200)
+            'description' => $this->faker->text(300),
+            'name' => $this->faker->name(),
+            'image' => 'https://raw.githubusercontent.com/Sergey-TR/images/main/img/bg768.png'
         ];
     }
 }

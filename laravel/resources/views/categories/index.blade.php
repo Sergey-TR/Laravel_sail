@@ -1,15 +1,17 @@
-@extends('layouts.master')
+@extends('layouts.main')
 
 @section('title', 'news_category')
 
+@section('header', 'NEWS CATEGORIES')
+
 @section('content')
-    <h1 class="text-center" style="color: darkred; font-weight: bold;">CATEGORY NEWS</h1>
     <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg"
         style="display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(1, 1fr);
             justify-content: space-around;
             align-items: center;
-            padding: 10px;">
+            padding: 10px;
+            width: 100%">
         @foreach($categories as $category)
             <div class="category_name"
                 style="min-width: 200px;
