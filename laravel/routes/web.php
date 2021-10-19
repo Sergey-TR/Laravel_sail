@@ -20,8 +20,12 @@ Route::get('/auth', function () {
     return view('auth.index');
 })->name('auth.index');
 
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::resource('/news', AdminNewsController::class);
+});
 
-Route::resource('/admin', AdminNewsController::class);
+
+
 
 
 
