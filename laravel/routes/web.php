@@ -5,12 +5,15 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\AdminNewsController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AboutCommentController;
 
+Route::get('/about', [AboutController::class, 'index'])->name('form.comment-create');
+Route::post('/about-comment/create', [AboutCommentController::class, 'store'])->name('about-comment.store');
 
 Route::get('/', [IndexController::class, 'index'])->name('index.index');
 
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
-//Route::get('/news/add', [NewsController::class, 'create'])->name('news.create');
 Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');

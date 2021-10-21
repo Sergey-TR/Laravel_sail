@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\News;
+use Illuminate\Support\Facades\Storage;
+
 
 class NewsController extends Controller
 {
@@ -17,14 +19,22 @@ class NewsController extends Controller
 
     public function show(News $news, User $user)
     {
+//        $comments = [];
+//        if (Storage::exists(FILE_ABOUT_COMMENT_NAME)){
+//            $comments = json_decode(Storage::get(FILE_ABOUT_COMMENT_NAME));
+//        }
         $category = $news->category()->get()[0];
         return view('news.show', compact(['news','category']));
     }
 
-//    public function create()
+//    public function create(News $news)
 //    {
-//        $categories = Category::all();
-//        return view('news.create', compact('categories'));
+//        $comments = [];
+//        if (Storage::exists(FILE_ABOUT_COMMENT_NAME)){
+//            $comments = json_decode(Storage::get(FILE_ABOUT_COMMENT_NAME));
+//        }
+//        return view('news.show', compact('comments'));
 //    }
+
 
 }

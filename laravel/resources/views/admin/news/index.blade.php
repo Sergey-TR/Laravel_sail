@@ -7,10 +7,13 @@
         <h1 class="h2">NEWS</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                <a href="#" class="btn btn-sm btn-outline-secondary">ADD NEWS</a>
+                <a href="{{ route('admin.news.create') }}" class="btn btn-sm btn-outline-secondary">ADD NEWS</a>
             </div>
         </div>
     </div>
+    @if (session('success'))
+        <h2 style="color: darkred;">{{ session('success') }}</h2>
+    @endif
 
     <h2>Section title</h2>
     <div class="table-responsive">
