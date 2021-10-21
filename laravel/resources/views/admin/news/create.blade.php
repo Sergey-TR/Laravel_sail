@@ -8,6 +8,7 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">CREATE NEWS</h1>
     </div>
+    @include('inc.message', ['name' => 'Example'])
     <form action="{{ route('admin.news.store') }}" method="post" style="width: 100%">
         @csrf
         <div style="width: 100%; display: flex; flex-direction: column;">

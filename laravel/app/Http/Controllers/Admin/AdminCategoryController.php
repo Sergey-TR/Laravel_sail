@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\NewsShowRequest;
-use App\Models\News;
 use App\Models\Category;
-
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class AdminNewsController extends Controller
+class AdminCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +15,8 @@ class AdminNewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
-        return view('admin.news.index', compact('news'));
+        $categories = Category::all();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -29,8 +26,7 @@ class AdminNewsController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.news.create', compact('categories'));
+        //
     }
 
     /**
@@ -39,11 +35,9 @@ class AdminNewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NewsShowRequest $request)
-
+    public function store(Request $request)
     {
-        //dd($request->ip());
-        return redirect()->route('admin.news.index')->with('success', 'Новость успешно добавлена!');
+        //
     }
 
     /**

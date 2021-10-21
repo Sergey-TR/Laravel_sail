@@ -5,6 +5,8 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\AdminNewsController;
+use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AboutCommentController;
 
@@ -24,6 +26,8 @@ Route::get('/auth', function () {
 })->name('auth.index');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/', AdminIndexController::class)->name('index');
+    Route::resource('/categories', AdminCategoryController::class);
     Route::resource('/news', AdminNewsController::class);
 });
 

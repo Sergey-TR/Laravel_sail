@@ -13,7 +13,7 @@
                         <li><a class="text-white" href="{{ route('index.index') }}">HOME</a></li>
                         <li><a class="text-white" href="{{ route('categories.index') }}">CATEGORY</a></li>
                         <li><a class="text-white" href="{{ route('news.index') }}">NEWS</a></li>
-                        <li><a class="text-white" href="{{ route('admin.news.index') }}">ADMIN</a></li>
+                        <li><a class="text-white" href="{{ route('admin.index') }}">ADMIN</a></li>
                         <li><a class="text-white" href="{{ route('auth.index') }}">LOG IN</a></li>
                     </ul>
                 </div>
