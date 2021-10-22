@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>10323d0e-8299-481b-8d1f-1643c08ed2da.SCHEMA:laravel</OriginalElement>
+  <nodes>
+    <node x="0.0" y="207.0">10323d0e-8299-481b-8d1f-1643c08ed2da.TABLE:laravel.news</node>
+    <node x="0.0" y="505.0">10323d0e-8299-481b-8d1f-1643c08ed2da.TABLE:laravel.failed_jobs</node>
+    <node x="366.0" y="0.0">10323d0e-8299-481b-8d1f-1643c08ed2da.TABLE:laravel.personal_access_tokens</node>
+    <node x="219.0" y="505.0">10323d0e-8299-481b-8d1f-1643c08ed2da.TABLE:laravel.migrations</node>
+    <node x="64.0" y="0.0">10323d0e-8299-481b-8d1f-1643c08ed2da.TABLE:laravel.categories</node>
+    <node x="453.0" y="505.0">10323d0e-8299-481b-8d1f-1643c08ed2da.TABLE:laravel.password_resets</node>
+    <node x="668.0" y="0.0">10323d0e-8299-481b-8d1f-1643c08ed2da.TABLE:laravel.users</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="10323d0e-8299-481b-8d1f-1643c08ed2da.TABLE:laravel.news" target="10323d0e-8299-481b-8d1f-1643c08ed2da.TABLE:laravel.categories" relationship="REFERENCES">
+      <point x="0.0" y="-126.5" />
+      <point x="0.0" y="78.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6784565916398714" showDependencies="false" x="707.8056872037914" y="355.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
