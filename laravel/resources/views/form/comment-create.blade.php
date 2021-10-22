@@ -6,6 +6,9 @@
 
 @section('content')
     <div style="width: 100%; display: flex; flex-direction: column;">
+        @if (session('success'))
+            <h2 style="color: darkred;">{{ session('success') }}</h2>
+        @endif
         <form action="{{ route('about-comment.store') }}" method="post" style="width: 100%; flex-direction: column; display: flex; justify-content: center; align-items: center;">
             @csrf
             <div>
