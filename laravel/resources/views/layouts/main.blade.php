@@ -46,7 +46,7 @@
 
 <main>
 
-    <div style="display: flex; align-items: center; justify-content: center; margin: 20px;">
+    <div style="display: flex; align-items: center; justify-content: center; margin: 20px; flex-direction: column;">
         <h1>
             @yield('header')
         </h1>

@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AboutCommentController;
+use App\Http\Controllers\OrderController;
+
+
 
 Route::get('/about', [AboutController::class, 'index'])->name('form.comment-create');
 Route::post('/about-comment/create', [AboutCommentController::class, 'store'])->name('about-comment.store');
@@ -30,6 +33,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('/categories', AdminCategoryController::class);
     Route::resource('/news', AdminNewsController::class);
 });
+
+Route::get('/order/create', [OrderController::class, 'create'])->name('order.store');
+Route::post('/order/create', [OrderController::class, 'store'])->name('order.store');
 
 
 
