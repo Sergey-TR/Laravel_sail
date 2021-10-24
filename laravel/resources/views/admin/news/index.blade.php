@@ -36,7 +36,7 @@
                 <td>{{ $newsItem->name }}</td>
                 <td>{{ now()->format('d-m-Y H:i') }}</td>
                 <td>
-                    <a href="#">EDIT</a>&nbsp;|&nbsp; <a href="#" style="color: red;">DELETE</a>
+                    <a href="{{ route('admin.news.edit', ['news' => $newsItem]) }}">EDIT</a>&nbsp;|&nbsp; <a href="#" style="color: red;">DELETE</a>
                 </td>
             </tr>
             @empty
@@ -47,4 +47,7 @@
             </tbody>
         </table>
     </div>
+{{--    <div style="height: 50px;">--}}
+{{--        {{ $news->links() }}--}}
+{{--    </div>--}}
 @endsection

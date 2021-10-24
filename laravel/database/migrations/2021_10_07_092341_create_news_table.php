@@ -15,13 +15,13 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained();
+            $table->foreignId('category_id')->constrained('categories');
             $table->string('name')->default('Admin');
             $table->text('title');
             $table->text('description');
             $table->enum('status', ['PUBLISHED', 'DRAFT', 'BLOCKED'])
                 ->default('PUBLISHED');
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

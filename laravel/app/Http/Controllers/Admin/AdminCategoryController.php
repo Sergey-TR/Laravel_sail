@@ -26,7 +26,7 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -37,7 +37,17 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::create(
+            $request->only(['title', 'description'])
+        );
+
+        if($category) {
+            return redirect()
+                ->route('admin.categories.index')
+                ->with('success', 'Категория успешно добавлена');
+        }
+
+        return back()->with('error', 'Категория не добавилась');
     }
 
     /**
@@ -57,9 +67,9 @@ class AdminCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -69,9 +79,18 @@ class AdminCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $category->title = $request->input('title');
+        $category->description = $request->input('description');
+
+        if($category->save()) {
+            return redirect()
+                ->route('admin.categories.index')
+                ->with('success', 'Категория успешно обновлена');
+        }
+
+        return back()->with('error', 'Категория не обновилась');
     }
 
     /**

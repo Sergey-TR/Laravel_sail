@@ -22,12 +22,15 @@ class NewsShowRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(Category $category)
+    public function rules(Category $category): array
     {
         return [
             'category' => ['required', 'exists:categories,id'],
-            'title' => ['required', 'string', 'min:3', 'max:50'],
-            'description' => ['required', 'string', 'min:3']
+            'title' => ['required', 'string', 'min:3', 'max:500'],
+            'description' => ['required', 'string', 'min:3'],
+            'name' => ['required', 'string'],
+            'status' => ['required', 'string'],
+            //'image' => ['required', 'string']
         ];
     }
 }

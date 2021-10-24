@@ -42,8 +42,32 @@ class AdminNewsController extends Controller
     public function store(NewsShowRequest $request)
 
     {
-        //dd($request->ip());
-        return redirect()->route('admin.news.index')->with('success', 'Новость успешно добавлена!');
+        $request->validate([
+            'title' => ['required', 'string']
+        ]);
+        //в отличие от урока это не работает
+        //dd($request);
+//        $news = News::create(
+//            $request->only(['category_id', 'title', 'description', 'status', 'name'])
+//        );
+        $news = new News([
+                'category_id' => $request->category,
+                'title' => $request->title,
+                'description' => $request->description,
+                'status' => $request->status,
+                'name' => $request->name,
+                //'image' => 'https://raw.githubusercontent.com/Sergey-TR/images/main/img/bg768.png'
+            ]
+        );
+        //dd($news);
+        $news->save();
+        if($news) {
+            return redirect()
+                ->route('admin.news.index')
+                ->with('success', 'Новость успешно добавлена');
+        }
+
+        return back()->with('error', 'Новость не добавилась');
     }
 
     /**
@@ -63,9 +87,10 @@ class AdminNewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(News $news)
     {
-        //
+        $categories = Category::all();
+        return view('admin.news.edit', compact(['news', 'categories']));
     }
 
     /**
@@ -75,9 +100,19 @@ class AdminNewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, News $news)
     {
-        //
+        $news = $news->fill(
+        $request->only(['category_id', 'title', 'description', 'status', 'name'])
+    )->save();
+
+        if($news) {
+            return redirect()
+                ->route('admin.news.index')
+                ->with('success', 'Новость успешно обновлена');
+        }
+
+        return back()->with('error', 'Новость не обновилась');
     }
 
     /**

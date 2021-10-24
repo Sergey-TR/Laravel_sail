@@ -13,7 +13,7 @@
              justify-content: center;
              align-items: center;
              padding: 10px;">
-            @foreach($news as $newsItem)
+            @forelse($news as $newsItem)
                 <div class="category_name"
                     style="width: 100%;
                 display: flex;
@@ -30,7 +30,9 @@
                     </a>
                     <p>author:&nbsp{{ $newsItem->name }}.</p>
                 </div>
-            @endforeach
+            @empty
+                <h2 style="color: darkred;">Нет новостей в этой категории</h2>
+            @endforelse
         </div>
     </div>
 @endsection

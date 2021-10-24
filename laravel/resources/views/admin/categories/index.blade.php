@@ -7,7 +7,7 @@
         <h1 class="h2">CATEGORIES</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                <a href="#" class="btn btn-sm btn-outline-secondary">ADD CATEGORY</a>
+                <a href="{{ route('admin.categories.create') }}" class="btn btn-sm btn-outline-secondary">ADD CATEGORY</a>
             </div>
         </div>
     </div>
@@ -32,9 +32,13 @@
                 <tr>
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->title }}</td>
-                    <td>{{ now()->format('d-m-Y H:i') }}</td>
                     <td>
-                        <a href="#">EDIT</a>&nbsp;|&nbsp; <a href="#" style="color: red;">DELETE</a>
+                        @if($category->updated_at)
+                            {{ $category->updated_at->format('d-m-Y H:i') }}
+                        @else - @endif
+                    </td>
+                    <td>
+                        <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}">EDIT</a>&nbsp;|&nbsp; <a href="#" style="color: red;">DELETE</a>
                     </td>
                 </tr>
             @empty
