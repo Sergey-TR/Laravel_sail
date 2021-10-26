@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class AboutCommentController extends Controller
 {
-    public function store(CommentStoreRequest $request): \Illuminate\Http\RedirectResponse
+    public function comment(CommentStoreRequest $request): \Illuminate\Http\RedirectResponse
     {
         $commentItem = [
             'name' => $request->request->get('name'),

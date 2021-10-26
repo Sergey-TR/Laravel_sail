@@ -14,7 +14,7 @@ use App\Http\Controllers\OrderController;
 
 
 Route::get('/about', [AboutController::class, 'index'])->name('form.comment-create');
-Route::post('/about-comment/create', [AboutCommentController::class, 'store'])->name('about-comment.store');
+Route::post('/about-comment/create', [AboutCommentController::class, 'comment'])->name('about-comment.store');
 
 Route::get('/', [IndexController::class, 'index'])->name('index.index');
 

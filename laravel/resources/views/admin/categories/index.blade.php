@@ -38,7 +38,14 @@
                         @else - @endif
                     </td>
                     <td>
-                        <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}">EDIT</a>&nbsp;|&nbsp; <a href="#" style="color: red;">DELETE</a>
+                        <form onsubmit="if(confirm('DELETE CATEGORY')){ return true }else{ return false }"
+                                               action="{{ route('admin.categories.destroy', ['category' => $category->id]) }}"
+                                               metod="post">
+                            @csrf
+                            @method('DELETE')
+                            <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}">EDIT
+                            </a>&nbsp;|&nbsp;<button type="submit" style="border: none; color: red; text-decoration: underline;">DELETE</button>
+                        </form>
                     </td>
                 </tr>
             @empty
@@ -48,6 +55,9 @@
             @endforelse
             </tbody>
         </table>
+    </div>
+    <div style="">
+        {{ $categories->links() }}
     </div>
 @endsection
 

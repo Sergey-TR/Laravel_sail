@@ -22,4 +22,15 @@
                     </div>
                 </div>
     </div>
+{{--    <div style="text-align: center; width: 100%; margin-top: 20px;">--}}
+{{--        <h3 style="margin-bottom: 10px;">Комментарии</h3>--}}
+{{--        @forelse($comments as $comment)--}}
+{{--            <div class="py-1 border px-2 rounded-md m-1">--}}
+{{--                <p><span class="font-bold">{{ $comment->name }}</span> - {{ (new DateTime($comment->created_at))->format('d.m.Y H:i') }}</p>--}}
+{{--                <p> {{ $comment->description }}</p>--}}
+{{--            </div>--}}
+{{--        @empty--}}
+{{--            <p class="text-center italic">Комментариев пока нет</p>--}}
+{{--        @endforelse--}}
+{{--    </div>--}}
 @endsection

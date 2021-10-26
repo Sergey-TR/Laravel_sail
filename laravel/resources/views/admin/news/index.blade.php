@@ -15,7 +15,7 @@
         <h2 style="color: darkred;">{{ session('success') }}</h2>
     @endif
 
-    <h2>Section title</h2>
+    <h2>All news</h2>
     <div class="table-responsive">
 
         <table class="table table-striped table-sm">
@@ -24,6 +24,7 @@
                 <th scope="col">#</th>
                 <th scope="col">ЗАГОЛОВОК</th>
                 <th scope="col">АВТОР</th>
+                <th scope="col">СТАТУС</th>
                 <th scope="col">ДОБАВЛЕНО</th>
                 <th scope="col">ДЕЙСТВИЕ</th>
             </tr>
@@ -34,9 +35,20 @@
                 <td>{{ $newsItem->id }}</td>
                 <td>{{ $newsItem->title }}</td>
                 <td>{{ $newsItem->name }}</td>
+                <td>{{ $newsItem->status }}</td>
                 <td>{{ now()->format('d-m-Y H:i') }}</td>
                 <td>
-                    <a href="{{ route('admin.news.edit', ['news' => $newsItem]) }}">EDIT</a>&nbsp;|&nbsp; <a href="#" style="color: red;">DELETE</a>
+{{--                    <a href="{{ route('admin.news.edit', ['news' => $newsItem]) }}">EDIT</a>&nbsp;|&nbsp;--}}
+{{--                    <a href="#" style="color: red;">DELETE</a>--}}
+                    <form onsubmit="if(confirm('DELETE NEWS')){ return true }else{ return false }"
+                          action="{{ route('admin.news.destroy', ['news' => $newsItem]) }}"
+                          metod="post">
+                        @csrf
+                        @method('delete')
+                        <a href="{{ route('admin.news.edit', ['news' => $newsItem]) }}">EDIT
+                        </a>&nbsp;|&nbsp;<button type="submit" style="border: none; color: red; text-decoration: underline;">DELETE</button>
+                    </form>
+
                 </td>
             </tr>
             @empty
@@ -47,7 +59,7 @@
             </tbody>
         </table>
     </div>
-{{--    <div style="height: 50px;">--}}
-{{--        {{ $news->links() }}--}}
-{{--    </div>--}}
+    <div style="">
+        {{ $news->links() }}
+    </div>
 @endsection

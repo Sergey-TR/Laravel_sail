@@ -18,7 +18,7 @@ class AdminNewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
+        $news = News::paginate(10);
         return view('admin.news.index', compact('news'));
     }
 
@@ -89,6 +89,7 @@ class AdminNewsController extends Controller
      */
     public function edit(News $news)
     {
+        //dd($news);
         $categories = Category::all();
         return view('admin.news.edit', compact(['news', 'categories']));
     }
@@ -121,8 +122,19 @@ class AdminNewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+   // public function destroy(News $news): \Illuminate\Http\Response
+ //   {
+        //dd($news);
+//        $news->delete();
+//        return redirect()->route('admin.news.index')
+//            ->with('success', 'Новость успешно удалена');
+  //  }
+
+    public function destroy(News $news): \Illuminate\Http\Response
     {
-        //
+        $news->delete();
+        return redirect()
+            ->route('admin.news.index')
+            ->with('success', 'News delete');
     }
 }

@@ -15,7 +15,7 @@ class AdminCategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::Paginate(8);
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -99,8 +99,11 @@ class AdminCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()
+            ->back()
+            ->with('success', 'Категория успешно удалена');
     }
 }

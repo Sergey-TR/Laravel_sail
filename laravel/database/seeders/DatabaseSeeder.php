@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Factories\CommentFactory;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
@@ -21,8 +22,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory(10)->create();
-        Category::factory(8)
-            ->has(News::factory(8))
+        Category::factory(10)
+            ->has(News::factory(3))
             ->create();
 
     }
