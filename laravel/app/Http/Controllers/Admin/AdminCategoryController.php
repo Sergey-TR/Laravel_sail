@@ -103,7 +103,7 @@ class AdminCategoryController extends Controller
     {
         $category->delete();
         return redirect()
-            ->back()
+            ->route('admin.categories.index')
             ->with('success', 'Категория успешно удалена');
     }
 }

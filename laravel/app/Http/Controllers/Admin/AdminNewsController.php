@@ -103,11 +103,12 @@ class AdminNewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news): \Illuminate\Http\Response
+    public function destroy(News $news)
     {
-        dd($news);
+        //dd($news);
         $news->delete();
-        return redirect()->route('admin.news.index')
+        return redirect()
+            ->route('admin.news.index')
             ->with('success', 'Новость успешно удалена');
     }
 }

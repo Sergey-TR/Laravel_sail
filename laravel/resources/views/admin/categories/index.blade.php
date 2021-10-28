@@ -40,7 +40,7 @@
                     <td>
                         <form onsubmit="if(confirm('DELETE CATEGORY')){ return true }else{ return false }"
                                                action="{{ route('admin.categories.destroy', ['category' => $category->id]) }}"
-                                               metod="post">
+                                               method="post">
                             @csrf
                             @method('DELETE')
                             <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}">EDIT

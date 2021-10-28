@@ -42,7 +42,7 @@
 {{--                    <a href="#" style="color: red;">DELETE</a>--}}
                     <form onsubmit="if(confirm('DELETE NEWS')){ return true }else{ return false }"
                           action="{{ route('admin.news.destroy', ['news' => $newsItem]) }}"
-                          metod="post">
+                          method="post">
                         @csrf
                         @method('delete')
                         <a href="{{ route('admin.news.edit', ['news' => $newsItem]) }}">EDIT

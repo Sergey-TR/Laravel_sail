@@ -24,6 +24,9 @@
     </div>
     <div style="text-align: center; width: 100%; margin-top: 20px;">
         <h3 style="margin-bottom: 10px; color: darkred;">Комментарии</h3>
+        @if (session('success'))
+            <h3 style="color: darkred;">{{ session('success') }}</h3>
+        @endif
         @forelse($comments as $comment)
             <div class="py-1 border px-2 rounded-md m-1" style="text-align: left;">
                 <p style="color: darkred;"> {{ $comment->comment }}</p>
