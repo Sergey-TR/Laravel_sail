@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Comment;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentRequests\EditCommentRequest;
 use Illuminate\Http\Request;
-use App\Http\Requests\CommentStoreRequest;
+use App\Http\Requests\CommentRequests\CommentStoreRequest;
 use App\Models\Comment;
 use App\Models\News;
 
@@ -41,7 +42,6 @@ class CommentController extends Controller
      */
     public function store(CommentStoreRequest $request)
     {
-        //dd($request);
         $comment = Comment::create($request->validated());
 
         if($comment) {
@@ -69,9 +69,10 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comment $comment)
     {
-        //
+        $news = News::all();
+        return view('comment.edit', compact(['comment', 'news']));
     }
 
     /**
@@ -81,9 +82,19 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditCommentRequest $request, Comment $comment)
     {
-        //
+        //dd($comment);
+        if($request->author === $comment->author || $request->author === 'admin') {
+            $comment = $comment->fill($request->validated())->save();
+            if($comment) {
+                return redirect()
+                    ->route('news.show', $request->news_id)
+                    ->with('success', 'COMMENT EDIT');
+            }
+            return back()->with('success', 'COMMENT NOT EDIT');
+        }
+        return back()->with('success', 'COMMENT NOT EDIT, only the author or admin can edit and delete comments');
     }
 
     /**

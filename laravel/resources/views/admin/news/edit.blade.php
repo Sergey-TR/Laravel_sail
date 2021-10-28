@@ -17,7 +17,8 @@
             <select class="form-control" name="category_id" id="category_id" style="margin-bottom: 20px;">
                 <option value="0">Без категории</option>
                 @foreach($categories as $category)
-                    <option @if($category->id === $news->category_id) selected @endif value="{{ $category->id }}">{{ $category->title }}</option>
+                    <option @if($category->id === $news->category_id) selected @endif
+                    value="{{ $category->id }}">{{ $category->title }}</option>
                 @endforeach
 
             </select>

@@ -39,7 +39,7 @@
                               metod="post">
                             @csrf
                             @method('delete')
-                            <a href="#">EDIT
+                            <a href="{{ route('comment.edit', ['comment' => $comment]) }}">EDIT
                             </a>&nbsp;|&nbsp;<button type="submit" style="border: none; color: red; text-decoration: underline;">DELETE</button>
                         </form>
                     </div>
