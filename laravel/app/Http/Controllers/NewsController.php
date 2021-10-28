@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -17,24 +18,11 @@ class NewsController extends Controller
         return view('news.index', compact('news'));
     }
 
-    public function show(News $news, User $user)
+    public function show(News $news)
     {
-//        $comments = [];
-//        if (Storage::exists(FILE_ABOUT_COMMENT_NAME)){
-//            $comments = json_decode(Storage::get(FILE_ABOUT_COMMENT_NAME));
-//        }
         $category = $news->category()->get()[0];
-        return view('news.show', compact(['news','category']));
+        $comments = $news->comments()->get();
+
+        return view('news.show', compact(['news','category', 'comments']));
     }
-
-//    public function create(News $news)
-//    {
-//        $comments = [];
-//        if (Storage::exists(FILE_ABOUT_COMMENT_NAME)){
-//            $comments = json_decode(Storage::get(FILE_ABOUT_COMMENT_NAME));
-//        }
-//        return view('news.show', compact('comments'));
-//    }
-
-
 }

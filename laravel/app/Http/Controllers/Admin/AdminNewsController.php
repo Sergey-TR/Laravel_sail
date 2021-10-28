@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\NewsShowRequest;
+use App\Http\Requests\NewsStoreRequest;
 use App\Models\News;
 use App\Models\Category;
 
@@ -23,7 +23,7 @@ class AdminNewsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the comment for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -39,28 +39,10 @@ class AdminNewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NewsShowRequest $request)
+    public function store(NewsStoreRequest $request)
 
     {
-        $request->validate([
-            'title' => ['required', 'string']
-        ]);
-        //в отличие от урока это не работает
-        //dd($request);
-//        $news = News::create(
-//            $request->only(['category_id', 'title', 'description', 'status', 'name'])
-//        );
-        $news = new News([
-                'category_id' => $request->category,
-                'title' => $request->title,
-                'description' => $request->description,
-                'status' => $request->status,
-                'name' => $request->name,
-                //'image' => 'https://raw.githubusercontent.com/Sergey-TR/images/main/img/bg768.png'
-            ]
-        );
-        //dd($news);
-        $news->save();
+        $news = News::create($request->validated());
         if($news) {
             return redirect()
                 ->route('admin.news.index')
@@ -82,14 +64,13 @@ class AdminNewsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the comment for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(News $news)
     {
-        //dd($news);
         $categories = Category::all();
         return view('admin.news.edit', compact(['news', 'categories']));
     }
@@ -122,19 +103,11 @@ class AdminNewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   // public function destroy(News $news): \Illuminate\Http\Response
- //   {
-        //dd($news);
-//        $news->delete();
-//        return redirect()->route('admin.news.index')
-//            ->with('success', 'Новость успешно удалена');
-  //  }
-
     public function destroy(News $news): \Illuminate\Http\Response
     {
+        dd($news);
         $news->delete();
-        return redirect()
-            ->route('admin.news.index')
-            ->with('success', 'News delete');
+        return redirect()->route('admin.news.index')
+            ->with('success', 'Новость успешно удалена');
     }
 }

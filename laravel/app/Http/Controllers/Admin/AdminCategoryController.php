@@ -20,7 +20,7 @@ class AdminCategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the comment for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -62,7 +62,7 @@ class AdminCategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the comment for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

@@ -12,14 +12,14 @@
     <form action="{{ route('admin.news.store') }}" method="post" style="width: 100%">
         @csrf
         <div style="width: 100%; display: flex; flex-direction: column;">
-            <label for="category" style="margin-bottom: 10px; color: darkred;">Категория новости</label>
-                <select name="category" style="height: 50px; margin-bottom: 20px">
+
+            <label for="category_id" style="margin-bottom: 10px; color: darkred;">Категория новости</label>
+                <select name="category_id" style="height: 50px; margin-bottom: 20px">
                     <option disabled selected>Выберите категорию</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->title }}</option>
                     @endforeach
                 </select>
-
             <label for="title" style="margin-bottom: 10px; color: darkred;">Заголовок</label>
                 <input type="text" name="title" placeholder="Введите заголовок" style="height: 50px; margin-bottom: 20px;">
 

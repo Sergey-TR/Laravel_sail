@@ -9,7 +9,13 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function newsComment()
+    protected $table = "comments";
+
+    protected $fillable = [
+        'author', 'comment', 'news_id'
+    ];
+
+    public function newsComments()
     {
         return $this->belongsTo(News::class);
     }

@@ -7,14 +7,14 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\AdminNewsController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminIndexController;
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\AboutCommentController;
+use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\OrderController;
 
 
-
-Route::get('/about', [AboutController::class, 'index'])->name('form.comment-create');
-Route::post('/about-comment/create', [AboutCommentController::class, 'comment'])->name('about-comment.store');
+Route::group(['prefix' => 'comment.'], function () {
+    Route::get('/comment/{id}', [CommentController::class, 'create'])->name('comment.comment-create');
+    Route::resource('/comment', CommentController::class);
+});
 
 Route::get('/', [IndexController::class, 'index'])->name('index.index');
 
