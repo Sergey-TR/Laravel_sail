@@ -14,21 +14,23 @@
         @method('put')
         <div class="form-group">
             <label for="category_id" style="margin-bottom: 10px; color: darkred;">Категория</label>
+            @error('category_id') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
             <select class="form-control" name="category_id" id="category_id" style="margin-bottom: 20px;">
                 <option value="0">Без категории</option>
                 @foreach($categories as $category)
                     <option @if($category->id === $news->category_id) selected @endif
                     value="{{ $category->id }}">{{ $category->title }}</option>
                 @endforeach
-
             </select>
         </div>
         <div class="form-group">
             <label for="title" style="margin-bottom: 10px; color: darkred;">Наименование</label>
+            @error('title') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
             <input type="text" style="margin-bottom: 20px;" class="form-control" name="title" id="title" value="{{ $news->title }}">
         </div>
         <div class="form-group">
             <label for="name" style="margin-bottom: 10px; color: darkred;">Автор</label>
+            @error('name') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
             <input type="text" style="margin-bottom: 20px;" class="form-control" name="name" id="name" value="{{ $news->name }}">
         </div>
         <div class="form-group">
@@ -41,6 +43,7 @@
         </div>
         <div class="form-group">
             <label for="description" style="margin-bottom: 10px; color: darkred;">Описание</label>
+            @error('description') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
             <textarea class="form-control" name="description" id="description">{!! $news->description !!}</textarea>
         </div><br>
             <div style="text-align: center;">

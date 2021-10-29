@@ -14,16 +14,20 @@
         <div style="width: 100%; display: flex; flex-direction: column;">
 
             <label for="category_id" style="margin-bottom: 10px; color: darkred;">Категория новости</label>
+            @error('category_id') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
                 <select name="category_id" style="height: 50px; margin-bottom: 20px">
                     <option disabled selected>Выберите категорию</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->title }}</option>
                     @endforeach
                 </select>
+
             <label for="title" style="margin-bottom: 10px; color: darkred;">Заголовок</label>
+            @error('title') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
                 <input type="text" name="title" placeholder="Введите заголовок" style="height: 50px; margin-bottom: 20px;">
 
             <label for="description" style="margin-bottom: 10px; color: darkred;">Содержание новости</label>
+            @error('description') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
                 <textarea name="description" cols="30" rows="10" placeholder="Введите текст новости" style="margin-bottom: 20px;"></textarea>
 
             <label for="status" style="margin-bottom: 10px; color: darkred;">Статус</label>
@@ -34,6 +38,7 @@
             </select>
 
             <label for="name" style="margin-bottom: 10px; color: darkred;">Автор</label>
+            @error('name') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
             <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" style="height: 50px; margin-bottom: 20px;">
 
             <div style="text-align: center;">

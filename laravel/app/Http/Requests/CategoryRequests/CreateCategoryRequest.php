@@ -13,7 +13,7 @@ class CreateCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,26 @@ class CreateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['required', 'string', 'min:3', 'max:250'],
+            'description' => ['sometimes']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Данное поле с именем :attribute обязательно необходимо заполнить',
+            'min' => [
+                'string' => 'Поле :attribute должно содержать не меньше :min символов.'
+            ]
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'title' => 'заголовок',
+            'description' => 'описание'
         ];
     }
 }

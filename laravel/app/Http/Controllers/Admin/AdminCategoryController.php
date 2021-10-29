@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequests\CreateCategoryRequest;
+use App\Http\Requests\CategoryRequests\EditCategoryRequest;
 
 class AdminCategoryController extends Controller
 {
@@ -35,11 +37,9 @@ class AdminCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
-        $category = Category::create(
-            $request->only(['title', 'description'])
-        );
+        $category = Category::create($request->validated());
 
         if($category) {
             return redirect()
@@ -79,18 +79,16 @@ class AdminCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(EditCategoryRequest $request, Category $category)
     {
-        $category->title = $request->input('title');
-        $category->description = $request->input('description');
-
-        if($category->save()) {
+        $category = $category->fill($request->validated())->save();
+        if($category) {
             return redirect()
                 ->route('admin.categories.index')
-                ->with('success', 'Категория успешно обновлена');
+                ->with('success', __('messages.admin.categories.update.success'));
         }
 
-        return back()->with('error', 'Категория не обновилась');
+        return back()->with('error', __('messages.admin.categories.update.fail'));
     }
 
     /**
@@ -101,9 +99,18 @@ class AdminCategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-        return redirect()
-            ->route('admin.categories.index')
-            ->with('success', 'Категория успешно удалена');
+//        $category->delete();
+//        return redirect()
+//            ->route('admin.categories.index')
+//            ->with('success', 'Категория успешно удалена');
+        try{
+            $category->delete();
+
+            return response()->json(['success' => true]);
+        }catch (\Exception $e) {
+            \Log::error($e->getMessage() . PHP_EOL, $e->getTrace());
+
+            return response()->json(['success' => false]);
+        }
     }
 }

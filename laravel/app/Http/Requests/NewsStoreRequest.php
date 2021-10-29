@@ -33,4 +33,24 @@ class NewsStoreRequest extends FormRequest
             //'image' => ['required', 'string']
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Данное поле с именем :attribute обязательно необходимо заполнить',
+            'min' => [
+                'string' => 'Поле :attribute должно содержать не меньше :min символов.'
+            ]
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'category_id' => 'категория новости',
+            'title' => 'заголовок',
+            'description' => 'описание',
+            'name' => 'имя автора'
+        ];
+    }
 }

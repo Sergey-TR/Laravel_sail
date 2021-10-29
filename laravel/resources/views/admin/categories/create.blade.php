@@ -13,6 +13,7 @@
         @csrf
         <div class="form-group">
             <label for="title" style="margin-bottom: 10px;">Наименование</label>
+            @error('title') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
             <input type="text" style="margin-bottom: 20px;" class="form-control" name="title" id="title" value="{{ old('title') }}">
         </div>
 

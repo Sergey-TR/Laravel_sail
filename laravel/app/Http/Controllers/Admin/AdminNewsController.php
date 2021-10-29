@@ -46,10 +46,10 @@ class AdminNewsController extends Controller
         if($news) {
             return redirect()
                 ->route('admin.news.index')
-                ->with('success', 'Новость успешно добавлена');
+                ->with('success', __('messages.admin.categories.store.success'));
         }
 
-        return back()->with('error', 'Новость не добавилась');
+        return back()->with('error', __('messages.admin.news.store.fail'));
     }
 
     /**
@@ -91,10 +91,10 @@ class AdminNewsController extends Controller
         if($news) {
             return redirect()
                 ->route('admin.news.index')
-                ->with('success', 'Новость успешно обновлена');
+                ->with('success', __('messages.admin.news.update.success'));
         }
 
-        return back()->with('error', 'Новость не обновилась');
+        return back()->with('error', __('messages.admin.news.update.fail'));
     }
 
     /**

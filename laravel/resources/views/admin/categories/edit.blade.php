@@ -11,10 +11,7 @@
     @include('inc.message', ['name' => 'Example'])
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Редактировать категорию</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-
-
-        </div>
+        <div class="btn-toolbar mb-2 mb-md-0"></div>
     </div>
 
     <div class="table-responsive">
@@ -24,6 +21,7 @@
             @method('put')
             <div class="form-group">
                 <label for="title" style="margin-bottom: 10px;">Наименование</label>
+                @error('title') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
                 <input type="text" style="margin-bottom: 20px;" class="form-control" name="title" id="title" value="{{ $category->title }}">
             </div>
 

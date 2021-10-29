@@ -30,4 +30,24 @@ class EditCommentRequest extends FormRequest
             'comment' => ['required', 'string', 'min:2', 'max:500']
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Данное поле с именем :attribute обязательно необходимо заполнить',
+            'min' => [
+                'string' => 'Поле :attribute должно содержать не меньше :min символов.'
+            ]
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'news_id' => 'категория новости',
+            'title' => 'заголовок',
+            'comment' => 'комментарий',
+            'author' => 'имя автора'
+        ];
+    }
 }
