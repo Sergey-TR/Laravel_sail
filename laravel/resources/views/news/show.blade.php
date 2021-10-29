@@ -38,8 +38,8 @@
                     </div>
                     <div>
                         <form onsubmit="if(confirm('DELETE COMMENT')){ return true }else{ return false }"
-                              action="#"
-                              metod="post">
+                              action="{{ route('comment.destroy', ['comment' => $comment]) }}"
+                              method="post">
                             @csrf
                             @method('delete')
                             <a href="{{ route('comment.edit', ['comment' => $comment]) }}">EDIT
