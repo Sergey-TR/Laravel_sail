@@ -10,14 +10,16 @@
             <h2 style="color: darkred;">{{ session('success') }}</h2>
         @endif
             @include('inc.message')
+            <p style="color: darkred; font-weight: bold; font-size: 20px; text-align: center;">
+                Комментировать новость:&nbsp;&nbsp;{{ $newsComments->title }}</p>
         <form action="{{ route('comment.store') }}" method="post" style="width: 100%; flex-direction: column; display: flex; justify-content: center; align-items: center;">
             @csrf
-            <div>
+            <div style="width: 100%;">
                 <input type="hidden" name="news_id" value="{{ $newsComments->id }}">
 
                 <label for="author" style="margin-bottom: 10px;">Имя пользователя</label><br>
                 @error('author') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
-                <input style="margin-bottom: 20px;" type="text" name="author" placeholder="Введите Ваше имя"><br>
+                <input style="margin-bottom: 20px; width: 100%; height: 50px;" type="text" name="author" placeholder="Введите Ваше имя"><br>
 
                 <label for="comment" style="margin-bottom: 10px">Комментарий</label><br>
                 @error('comment') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror

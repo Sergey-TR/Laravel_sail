@@ -11,7 +11,7 @@ use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\OrderController;
 
 
-Route::group(['prefix' => 'comment.'], function () {
+Route::group(['prefix' => 'comment'], function () {
     Route::get('/comment/{id}', [CommentController::class, 'create'])->name('comment.comment-create');
     Route::resource('/comment', CommentController::class);
 });
