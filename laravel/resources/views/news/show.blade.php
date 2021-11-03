@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title', 'news')
 
@@ -22,7 +22,8 @@
                     </div>
                 </div>
     </div>
-    <div style="text-align: center; width: 100%; margin-top: 20px;">
+    <div style="display: flex; justify-content: center;">
+    <div style="text-align: center; max-width: 900px; margin-top: 20px;">
         <h3 style="margin-bottom: 10px; color: darkred;">Комментарии</h3>
         @if (session('success'))
             <h3 style="color: darkred;">{{ session('success') }}</h3>
@@ -51,5 +52,6 @@
         @empty
             <p class="text-center italic">Комментариев пока нет</p>
         @endforelse
+    </div>
     </div>
 @endsection

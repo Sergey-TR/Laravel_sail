@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title', 'news_category')
 
@@ -17,7 +17,7 @@
                 style="min-width: 200px;
                 display: flex;
                 align-items: center;
-                justify-content: start;
+                justify-content: center;
                 margin: 10px;">
                 <a href="{{ route('categories.show', compact('category')) }}"
                     style="text-align: center;

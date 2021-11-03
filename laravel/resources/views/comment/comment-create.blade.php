@@ -1,10 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title', 'comments')
 
 @section('header', 'CREATE COMMENT')
 
 @section('content')
+    <div style="max-width: 900px; margin: 0 auto;">
     <div style="width: 100%; display: flex; flex-direction: column;">
         @if (session('success'))
             <h2 style="color: darkred;">{{ session('success') }}</h2>
@@ -31,5 +32,5 @@
             </div>
         </form>
     </div>
-
+    </div>
 @endsection

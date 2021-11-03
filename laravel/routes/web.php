@@ -42,3 +42,7 @@ Route::post('/order/create', [OrderController::class, 'store'])->name('order.sto
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
