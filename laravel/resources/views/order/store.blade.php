@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title', 'order')
 
@@ -16,9 +16,9 @@
 @section('content')
 
 @include('inc.message', ['name' => 'Example'])
-<form action="{{ route('order.store') }}" method="post" style="width: 100%">
+<form action="{{ route('order.store') }}" method="post" style="width: 100%; display: flex; justify-content: center;">
     @csrf
-    <div style="width: 100%; display: flex; flex-direction: column;">
+    <div style="width: 100%; display: flex; flex-direction: column; padding: 0 100px;">
         <label for="name">Имя пользователя</label>
         <input type="text" name="name" placeholder="Введите Ваше имя" value="{{ old('name') }}"
                style="height: 50px; margin-bottom: 20px;">

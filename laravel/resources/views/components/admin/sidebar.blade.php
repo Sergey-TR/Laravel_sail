@@ -21,6 +21,13 @@
                     News
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link @if (request()->routeIs('admin.status.*')) active @endif"
+                   href="{{ route('admin.status.index') }}">
+                    <span data-feather="status"></span>
+                    Status
+                </a>
+            </li>
         </ul>
 
     </div>

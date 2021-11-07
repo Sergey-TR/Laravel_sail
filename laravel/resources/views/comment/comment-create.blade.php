@@ -13,6 +13,7 @@
             @include('inc.message')
             <p style="color: darkred; font-weight: bold; font-size: 20px; text-align: center;">
                 Комментировать новость:&nbsp;&nbsp;{{ $newsComments->title }}</p>
+    @if (Auth::user())
         <form action="{{ route('comment.store') }}" method="post" style="width: 100%; flex-direction: column; display: flex; justify-content: center; align-items: center;">
             @csrf
             <div style="width: 100%;">
@@ -20,7 +21,7 @@
 
                 <label for="author" style="margin-bottom: 10px;">Имя пользователя</label><br>
                 @error('author') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
-                <input style="margin-bottom: 20px; width: 100%; height: 50px;" type="text" name="author" placeholder="Введите Ваше имя"><br>
+                <input style="margin-bottom: 20px; width: 100%; height: 50px;" type="text" name="author" value="{{ Auth::user()->name }}"><br>
 
                 <label for="comment" style="margin-bottom: 10px">Комментарий</label><br>
                 @error('comment') <div><strong style="color:darkred;">{{ $message }}</strong></div> @enderror
@@ -31,6 +32,14 @@
                 </div>
             </div>
         </form>
+            @else
+        <div>
+            <h3 style="color: darkred; text-align: center;">Оставлять комментарии могут только зарегистрированные пользователи.<br><br>
+                <a href="{{ route('register') }}">Зарегистрируйтесь</a> или
+                <a href="{{ route('login') }}">войдите </a> в свой аккаунт.
+            </h3>
+        </div>
+            @endif
     </div>
     </div>
 @endsection

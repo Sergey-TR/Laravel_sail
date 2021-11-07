@@ -25,20 +25,25 @@
 </head>
 <body>
     <div id="app">
-        <x-header></x-header>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Laravel') }}News
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item"><a class="nav-link" href="{{ route('index.index') }}">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('categories.index') }}">CATEGORY</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('news.index') }}">NEWS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.index') }}">ADMIN</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('order.store') }}">ORDER</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -58,11 +63,14 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
+                                   role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('account') }}">Account {{ Auth::user()->name }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -89,6 +97,8 @@
         </main>
         <x-footer></x-footer>
     </div>
-    <script src="https://getbootstrap.com/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+{{--    <script src="https://getbootstrap.com/docs/5.1/dist/js/bootstrap.bundle.min.js" --}}
+{{--            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" --}}
+{{--            crossorigin="anonymous"></script>--}}
 </body>
 </html>
