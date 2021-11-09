@@ -42,7 +42,6 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('index.index') }}">HOME</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('categories.index') }}">CATEGORY</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('news.index') }}">NEWS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.index') }}">ADMIN</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('order.store') }}">ORDER</a></li>
                     </ul>
 
@@ -87,8 +86,8 @@
                 </div>
             </div>
         </nav>
-        <div style="display: flex; align-items: center; justify-content: center; margin: 20px; flex-direction: column;">
-            <h1 style="color: darkred;">
+        <div style="display: flex; align-items: center; justify-content: center; padding-top: 40px;">
+            <h1 style="color: darkred; width: 100%; text-align: center;">
                 @yield('header')
             </h1>
         </div>

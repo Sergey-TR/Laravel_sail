@@ -37,7 +37,7 @@
                     <td>{{ $user->name }}</td>
                     <td>
                         @if($user->is_admin)
-                            administrator
+                            <span style="color: red;">administrator</span>
                         @else
                             Обычный смертный
                         @endif
