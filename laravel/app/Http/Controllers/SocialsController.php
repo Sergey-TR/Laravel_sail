@@ -9,17 +9,19 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialsController extends Controller
 {
-    public function link()
+    public function link($socialName)
     {
-        return Socialite::driver('vkontakte')->redirect();
+        //dd($socialName);
+        return Socialite::driver($socialName)->redirect();
     }
 
-    public function callback(Social $social)
+    public function callback(Social $social, $socialName)
     {
+        //dd($socialName);
         try {
             return redirect(
                 $social->loginUser(
-                    Socialite::driver('vkontakte')->user()
+                    Socialite::driver($socialName)->user()
                 )
             );
         }catch (\Exception $exception) {

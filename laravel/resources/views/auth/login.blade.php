@@ -70,8 +70,9 @@
                     </form>
                     <p style="margin-top: 15px; text-align: center;">ВОЙТИ С ПОМОЩЬЮ</p>
                     <div style="display: flex; align-items: center;justify-content: center;">
-                        <a href="{{ route('vk.link') }}" style="padding: 0 10px;"><img src="/images/vk.png"></a>
-                        <a href="#" style="padding: 0 10px;"><img src="/images/f.png"></a>
+                        <a href="{{ route('vk.link', 'vkontakte') }}" rel="vkontakte" style="padding: 0 10px;"><img src="/images/vk.png"></a>
+                        <a href="{{ route('vk.link', 'facebook') }}" style="padding: 0 10px;"><img src="/images/f.png"></a>
+                        <a href="{{ route('vk.link', 'google') }}" style="padding: 0 10px;"><img src="/images/google.png" style="width: 38px;"></a>
                     </div>
                 </div>
             </div>

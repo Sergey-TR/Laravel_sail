@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\InfoRegisterController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Account\AccountController;
@@ -44,9 +45,11 @@ Route::post('/order/create', [OrderController::class, 'store'])->name('order.sto
 
 Auth::routes();
 
+Route::get('/info', [InfoRegisterController::class, 'infoRegister'])->name('auth.info');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'guest'], function () {
-   Route::get('/vk/link', [SocialsController::class, 'link'])->name('vk.link');
-   Route::get('/vk/callback', [SocialsController::class, 'callback'])->name('vk.callback');
+   Route::get('/vk/link/{social}', [SocialsController::class, 'link'])->name('vk.link');
+   Route::get('/vk/{social}/callback', [SocialsController::class, 'callback'])->name('vk.callback');
 });
