@@ -33,7 +33,7 @@
             @forelse($news as $newsItem)
             <tr>
                 <td>{{ $newsItem->id }}</td>
-                <td>{{ $newsItem->title }}</td>
+                <td style="max-width: 200px;">{{ $newsItem->title }}</td>
                 <td>{{ $newsItem->name }}</td>
                 <td>{{ $newsItem->status }}</td>
                 <td>{{ now()->format('d-m-Y H:i') }}</td>

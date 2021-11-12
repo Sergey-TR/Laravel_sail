@@ -40,8 +40,8 @@ class AdminNewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(NewsStoreRequest $request)
-
     {
+        //dd($request);
         $news = News::create($request->validated());
         if($news) {
             return redirect()

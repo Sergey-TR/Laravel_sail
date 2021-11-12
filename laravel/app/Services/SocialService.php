@@ -12,6 +12,7 @@ class SocialService implements Social
 {
     public function loginUser(User $user): string
     {
+        //dd($user);
         $authUser = Model::where('email', $user->getEmail())->first();
         //dd($authUser);
         if($authUser) {
@@ -22,6 +23,7 @@ class SocialService implements Social
                 return route('account');
             }
         }
-        return route('auth.info');
+        //dd($user);
+        return route('auth.info', [$user->getEmail()]);
     }
 }

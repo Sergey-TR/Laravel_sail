@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminNewsController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\AdminStatusController;
+use App\Http\Controllers\Admin\AdminParserNewsController;
 use App\Http\Controllers\Admin\ParserController;
 use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\OrderController;
@@ -33,7 +34,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/account', AccountController::class)->name('account');
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
         Route::get('/', AdminIndexController::class)->name('index');
-        Route::get('/parser', ParserController::class)->name('parser');
+//        Route::get('/parser', ParserController::class)->name('parser.index');
+        Route::resource('/parser', AdminParserNewsController::class);
         Route::resource('/categories', AdminCategoryController::class);
         Route::resource('/news', AdminNewsController::class);
         Route::resource('/status', AdminStatusController::class);
@@ -45,7 +47,7 @@ Route::post('/order/create', [OrderController::class, 'store'])->name('order.sto
 
 Auth::routes();
 
-Route::get('/info', [InfoRegisterController::class, 'infoRegister'])->name('auth.info');
+Route::get('/info/{userEmail}', [InfoRegisterController::class, 'infoRegister'])->name('auth.info');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
