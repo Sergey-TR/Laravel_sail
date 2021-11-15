@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\NewsJob;
 use App\Models\Category;
 use App\Models\News;
 use App\Models\Resource;
@@ -17,14 +18,14 @@ class AdminParserNewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Parser $parser)
+    public function index(Request $request)
     {
-        $linkRSS = Resource::all();
-        //dd($linkRSS);
-        $news = $parser->setUrl('https://news.yandex.ru/sport.rss')
-            ->start();
+        $rssLinks = Resource::all();
 
-        return view('admin.parser.index', compact('news'));
+        foreach ($rssLinks as $rssLink) {
+            $this->dispatch(new NewsJob($rssLink->resource_url));
+        }
+        return back()->with('success', 'news parse');
     }
 
     /**
@@ -45,7 +46,6 @@ class AdminParserNewsController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
         $category = Category::whereTitle($request->category_id)->first();
         if(!$category) {
             $category = Category::create([
@@ -60,7 +60,6 @@ class AdminParserNewsController extends Controller
             ]
         );
         $newsCheck = News::whereTitle($news->title)->first();
-        //dd($newsCheck);
         if(!$newsCheck) {
             $news->save();
                 if($news) {
@@ -68,7 +67,6 @@ class AdminParserNewsController extends Controller
                         ->route('admin.news.index')
                         ->with('success', 'Новость успешно добавлена');
                 }
-
             return back()->with('error', 'Новость не добавилась');
         }
         return back()->with('success', 'Новость уже существует');
