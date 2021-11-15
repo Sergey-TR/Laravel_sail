@@ -30,7 +30,7 @@ class NewsStoreRequest extends FormRequest
             'description' => ['required', 'string', 'min:3'],
             'name' => ['required', 'string'],
             'status' => ['required', 'string'],
-            //'image' => ['required', 'string']
+            'image' => ['nullable', 'mimes:jpg,jpeg,png']
         ];
     }
 

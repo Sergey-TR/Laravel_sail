@@ -16,7 +16,8 @@
         "orchestra/parser": "^6.1",
         "socialiteproviders/facebook": "^4.1",
         "socialiteproviders/google": "^4.1",
-        "socialiteproviders/vkontakte": "^4.2"
+        "socialiteproviders/vkontakte": "^4.2",
+        "unisharp/laravel-filemanager": "^2.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

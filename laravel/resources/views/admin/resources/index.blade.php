@@ -1,15 +1,25 @@
 @extends('layouts.admin')
 
-@section('title', 'news')
+@section('title', 'resources')
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">CATEGORIES</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-                <a href="{{ route('admin.categories.create') }}" class="btn btn-sm btn-outline-secondary">ADD CATEGORY</a>
-            </div>
-        </div>
+        <h1 class="h2">RESOURCES</h1>
+            <form action="{{ route('admin.resource.store') }}" method="post">
+                @csrf
+                <div style="display: flex; align-items: center; justify-content: space-between;
+                        border: 1px solid #41464b; padding: 5px; border-radius: 5px;">
+                <div style="margin-right: 20px;">
+                    <input type="text" name="resource_url" placeholder="введите полный url ресурса"
+                    style="outline: none; height: 31px; border: none; border-bottom: 1px solid #41464b;">
+                </div>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <button class="btn btn-sm btn-outline-secondary">ADD RESOURCE</button>
+                   </div>
+                </div>
+                </div>
+            </form>
     </div>
     @if (session('success'))
         <h2 style="color: darkred;">{{ session('success') }}</h2>
@@ -20,24 +30,23 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">ЗАГОЛОВОК</th>
+                <th scope="col">URL РЕСУРСА</th>
                 <th scope="col">ДОБАВЛЕНО</th>
                 <th scope="col">ДЕЙСТВИЕ</th>
             </tr>
             </thead>
             <tbody>
-            @forelse($categories as $category)
+            @forelse($resources as $resource)
                 <tr>
-                    <td>{{ $category->id }}</td>
-                    <td>{{ $category->title }}</td>
+                    <td>{{ $resource->id }}</td>
+                    <td>{{ $resource->resource_url }}</td>
                     <td>
-                        @if($category->updated_at)
-                            {{ $category->updated_at->format('d-m-Y H:i') }}
+                        @if($resource->updated_at)
+                            {{ $resource->updated_at->format('d-m-Y H:i') }}
                         @else - @endif
                     </td>
                     <td>
-                        <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}">EDIT</a>&nbsp;|&nbsp;
-                        <a href="javascript:;" class="delete" rel="{{ $category->id }}" style="color: red;">DELETE</a>
+                        <a href="javascript:;" class="delete" rel="{{ $resource->id }}" style="color: red;">DELETE</a>
                     </td>
                 </tr>
             @empty
@@ -48,9 +57,9 @@
             </tbody>
         </table>
     </div>
-    <div style="">
-        {{ $categories->links() }}
-    </div>
+{{--    <div style="">--}}
+{{--        {{ $categories->links() }}--}}
+{{--    </div>--}}
 @endsection
 @push('js')
     <script type="text/javascript">
@@ -64,7 +73,7 @@
             links.forEach(function (index) {
                 index.addEventListener("click", function () {
                     if(confirm("Вы подтверждаете удаление ?")) {
-                        fetchData("{{ url('/admin/categories') }}/" + this.getAttribute('rel'), {
+                        fetchData("{{ url('/admin/resource') }}/" + this.getAttribute('rel'), {
                             method: "DELETE",
                             headers: {
                                 'Content-Type': 'application/json; charset=utf-8',
@@ -80,3 +89,4 @@
         });
     </script>
 @endpush
+

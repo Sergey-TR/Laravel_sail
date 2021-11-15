@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\AdminStatusController;
 use App\Http\Controllers\Admin\AdminParserNewsController;
+use App\Http\Controllers\Admin\AdminResourceController;
 use App\Http\Controllers\Admin\ParserController;
 use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\OrderController;
@@ -38,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/parser', AdminParserNewsController::class);
         Route::resource('/categories', AdminCategoryController::class);
         Route::resource('/news', AdminNewsController::class);
+        Route::resource('/resource', AdminResourceController::class);
         Route::resource('/status', AdminStatusController::class);
     });
 });

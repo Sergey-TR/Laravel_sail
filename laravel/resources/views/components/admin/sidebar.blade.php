@@ -35,6 +35,13 @@
                     View the news feed
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link @if (request()->routeIs('admin.resource.*')) active @endif"
+                   href="{{ route('admin.resource.index') }}">
+                    <span data-feather="status"></span>
+                    Resources
+                </a>
+            </li>
         </ul>
 
     </div>

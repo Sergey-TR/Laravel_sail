@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\News;
+use App\Models\Resource;
 use Illuminate\Http\Request;
 use App\Contracts\Parser;
 use Orchestra\Parser\Xml\Facade as XmlParser;
@@ -18,6 +19,8 @@ class AdminParserNewsController extends Controller
      */
     public function index(Request $request, Parser $parser)
     {
+        $linkRSS = Resource::all();
+        //dd($linkRSS);
         $news = $parser->setUrl('https://news.yandex.ru/sport.rss')
             ->start();
 

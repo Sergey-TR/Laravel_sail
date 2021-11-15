@@ -7,6 +7,7 @@ use App\Http\Requests\NewsStoreRequest;
 use App\Models\News;
 use App\Models\Category;
 
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 
 class AdminNewsController extends Controller
@@ -82,11 +83,14 @@ class AdminNewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(NewsStoreRequest $request, News $news)
     {
-        $news = $news->fill(
-        $request->only(['category_id', 'title', 'description', 'status', 'name'])
-    )->save();
+        $validated = $request->validated();
+        if(isset($validated['image']) && !is_null($validated['image'])) {
+            $service = app(ImageService::class);
+            $validated['image'] = $service->imageUpload($validated['image']);
+        }
+        $news = $news->fill($validated)->save();
 
         if($news) {
             return redirect()

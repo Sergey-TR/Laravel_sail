@@ -9,7 +9,8 @@
         <h1 class="h2">EDIT NEWS</h1>
     </div>
     @include('inc.message', ['name' => 'Example'])
-    <form method="post" action="{{ route('admin.news.update', ['news' => $news]) }}">
+    <form method="post" action="{{ route('admin.news.update', ['news' => $news]) }}"
+          enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="form-group">
@@ -34,6 +35,13 @@
             <input type="text" style="margin-bottom: 20px;" class="form-control" name="name" id="name" value="{{ $news->name }}">
         </div>
         <div class="form-group">
+            <label for="image" style="margin-bottom: 10px; color: darkred;">Изображение</label>
+            @if($news->image)
+                <img src="{{ Storage::disk('news')->url($news->image) }}" style="width: 100px; margin-left: 15px;">
+            @endif
+            <input type="file" style="margin-bottom: 20px;" class="form-control" name="image" id="image">
+        </div>
+        <div class="form-group">
             <label for="status" style="margin-bottom: 10px; color: darkred;">Статус</label>
             <select class="form-control" name="status" id="status" style="margin-bottom: 20px;">
                 <option @if($news->status === 'DRAFT') selected @endif>DRAFT</option>
@@ -52,4 +60,15 @@
             </div>
     </form>
 @endsection
+
+@push('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#description' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+@endpush
 
