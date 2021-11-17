@@ -9,6 +9,7 @@ use App\Models\News;
 use App\Models\Resource;
 use Illuminate\Http\Request;
 use App\Contracts\Parser;
+use Illuminate\Support\Facades\DB;
 use Orchestra\Parser\Xml\Facade as XmlParser;
 
 class AdminParserNewsController extends Controller
@@ -23,9 +24,10 @@ class AdminParserNewsController extends Controller
         $rssLinks = Resource::all();
 
         foreach ($rssLinks as $rssLink) {
-            $this->dispatch(new NewsJob($rssLink->resource_url));
+           $this->dispatch(new NewsJob($rssLink->resource_url));
         }
-        return back()->with('success', 'news parse');
+
+        return redirect()->route('admin.news.index');
     }
 
     /**

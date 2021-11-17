@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\Parser;
+use App\Jobs\NewsJob;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Support\Facades\Storage;
@@ -44,10 +45,11 @@ class ParserService implements Parser
                 'uses' => 'channel.item[title,link,guid,description,pubDate]'
             ],
         ]);
+//dd($data);
+//        $e = explode("/", $this->getUrl());
+//        $fileName = end($e);
+//        Storage::append('news/'. $fileName, json_encode($data));
 
-        $e = explode("/", $this->getUrl());
-        $fileName = end($e);
-        Storage::append('news/'. $fileName, json_encode($data));
 
     }
 }

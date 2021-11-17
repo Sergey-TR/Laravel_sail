@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Contracts\Parser;
+use App\Services\ParserService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -34,6 +35,5 @@ class NewsJob implements ShouldQueue
     public function handle(Parser $parser)
     {
         $parser->setUrl($this->rssLink)->start();
-
     }
 }
