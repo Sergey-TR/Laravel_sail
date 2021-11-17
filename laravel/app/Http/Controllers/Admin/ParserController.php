@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\NewsJob;
 use App\Models\Category;
 use App\Models\News;
+use App\Models\Resource;
 use App\Services\ParserService;
 use Illuminate\Http\Request;
 use App\Contracts\Parser;
@@ -18,40 +20,16 @@ class ParserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, Parser $parser)
+    public function __invoke(Request $request)
     {
-        $news = $parser->setUrl('https://news.yandex.ru/sport.rss')
-            ->start();
+        $rssLinks = Resource::all();
 
-        $category = Category::whereTitle($news['title'])->first();
-        //dd($category);
-        if(!$category) {
-            $category = Category::create([
-                'title' => $news['title']
-            ]);
-            //dd($category);
+        foreach ($rssLinks as $rssLink) {
+            $this->dispatch(new NewsJob($rssLink->resource_url));
         }
-        $newsSaveDb = News::whereCategoryId($category->id)
-                ->whereIn('title',
-                        array_map(function ($newsItem) {
-                            return $newsItem['title'];
-                        }, $news['news'])
-                )->get();
-        //dd($newsSaveDb);
 
-        $newsSaveToDb = [];
-
-        foreach ($news['news'] as $newsItem) {
-            if($newsSaveDb->where('title', $newsItem['title'])->isNotEmpty()) continue;
-
-            $newsSaveToDb[] = [
-                'title' => $newsItem['title'],
-                'category_id' => $category->id,
-                'description' => $newsItem['description'],
-            ];
-        }
-        News::insert($newsSaveToDb);
-        return redirect()->route('admin.index')
-                            ->with('success', 'Новости добавлены');
+        return redirect()
+            ->route('admin.news.index')
+            ->with('success', 'The news has been successfully parsed');
     }
 }

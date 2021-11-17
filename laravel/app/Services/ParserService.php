@@ -45,11 +45,37 @@ class ParserService implements Parser
                 'uses' => 'channel.item[title,link,guid,description,pubDate]'
             ],
         ]);
-//dd($data);
-//        $e = explode("/", $this->getUrl());
-//        $fileName = end($e);
-//        Storage::append('news/'. $fileName, json_encode($data));
 
+        $e = explode("/", $this->getUrl());
+        $fileName = end($e);
+        Storage::append('news/'. $fileName, json_encode($data));
 
+        $category = Category::whereTitle($data['title'])->first();
+        if(!$category) {
+            $category = Category::create([
+                'title' => $data['title']
+            ]);
+        }
+
+        $newsSaveDb = News::whereCategoryId($category->id)
+            ->whereIn('title',
+                array_map(function ($newsItem) {
+                    return $newsItem['title'];
+                }, $data['news'])
+            )->get();
+        //dd($newsSaveDb);
+
+        $newsSaveToDb = [];
+
+        foreach ($data['news'] as $newsItem) {
+            if($newsSaveDb->where('title', $newsItem['title'])->isNotEmpty()) continue;
+
+            $newsSaveToDb[] = [
+                'title' => $newsItem['title'],
+                'category_id' => $category->id,
+                'description' => $newsItem['description'],
+            ];
+        }
+        News::insert($newsSaveToDb);
     }
 }

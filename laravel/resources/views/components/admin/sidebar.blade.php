@@ -32,7 +32,7 @@
                 <a class="nav-link @if (request()->routeIs('admin.parser.*')) active @endif"
                    href="{{ route('admin.parser.index') }}">
                     <span data-feather="status"></span>
-                    View the news feed
+                    Parser news feed
                 </a>
             </li>
             <li class="nav-item">
